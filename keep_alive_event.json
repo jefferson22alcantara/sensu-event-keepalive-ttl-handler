@@ -1,0 +1,198 @@
+{
+    "check": {
+        "command": "echo 'Force Start Crond' ; sudo systemctl start crond ",
+        "handlers": [
+            "keepalive_checks"
+        ],
+        "high_flap_threshold": 0,
+        "interval": 10,
+        "low_flap_threshold": 0,
+        "publish": false,
+        "runtime_assets": null,
+        "subscriptions": [
+            "entity:dev-sensu-server-198-15-120.dc.ifood.com.br"
+        ],
+        "proxy_entity_name": "",
+        "check_hooks": null,
+        "stdin": false,
+        "subdue": null,
+        "ttl": 11,
+        "timeout": 1,
+        "round_robin": false,
+        "executed": 1614832657,
+        "history": [
+            {
+                "status": 1,
+                "executed": 1614832436
+            },
+            {
+                "status": 1,
+                "executed": 1614832447
+            },
+            {
+                "status": 1,
+                "executed": 1614832458
+            },
+            {
+                "status": 1,
+                "executed": 1614832469
+            },
+            {
+                "status": 1,
+                "executed": 1614832480
+            },
+            {
+                "status": 1,
+                "executed": 1614832491
+            },
+            {
+                "status": 1,
+                "executed": 1614832502
+            },
+            {
+                "status": 1,
+                "executed": 1614832513
+            },
+            {
+                "status": 1,
+                "executed": 1614832525
+            },
+            {
+                "status": 1,
+                "executed": 1614832536
+            },
+            {
+                "status": 1,
+                "executed": 1614832547
+            },
+            {
+                "status": 1,
+                "executed": 1614832558
+            },
+            {
+                "status": 1,
+                "executed": 1614832569
+            },
+            {
+                "status": 1,
+                "executed": 1614832580
+            },
+            {
+                "status": 1,
+                "executed": 1614832591
+            },
+            {
+                "status": 1,
+                "executed": 1614832602
+            },
+            {
+                "status": 1,
+                "executed": 1614832613
+            },
+            {
+                "status": 1,
+                "executed": 1614832624
+            },
+            {
+                "status": 1,
+                "executed": 1614832635
+            },
+            {
+                "status": 1,
+                "executed": 1614832646
+            },
+            {
+                "status": 1,
+                "executed": 1614832657
+            }
+        ],
+        "issued": 0,
+        "output": "Last check execution was 30 seconds ago",
+        "state": "failing",
+        "status": 1,
+        "total_state_change": 0,
+        "last_ok": 1614831950,
+        "occurrences": 64,
+        "occurrences_watermark": 64,
+        "output_metric_format": "",
+        "output_metric_handlers": null,
+        "env_vars": null,
+        "metadata": {
+            "name": "remediation-linux-cron",
+            "namespace": "development",
+            "labels": {
+                "sensu.io/managed_by": "sensuctl"
+            },
+            "annotations": {
+                "sensu.io/plugins/sensu-event-keepalive-ttl-handler/conf/enable": "true",
+                "sensu.io/plugins/sensu-opsgenie-handler/config/team": "N2-PSE"
+            }
+        },
+        "secrets": null,
+        "is_silenced": false
+    },
+    "entity": {
+        "entity_class": "agent",
+        "system": {
+            "hostname": "dev-sensu-server-198-15-120",
+            "os": "linux",
+            "platform": "centos",
+            "platform_family": "rhel",
+            "platform_version": "7.7.1908",
+            "network": {
+                "interfaces": [
+                    {
+                        "name": "lo",
+                        "addresses": [
+                            "127.0.0.1/8"
+                        ]
+                    },
+                    {
+                        "name": "ens5",
+                        "mac": "02:90:98:02:24:8a",
+                        "addresses": [
+                            "10.198.15.120/20"
+                        ]
+                    }
+                ]
+            },
+            "arch": "amd64",
+            "libc_type": "glibc",
+            "vm_system": "",
+            "vm_role": "",
+            "cloud_provider": "",
+            "processes": null
+        },
+        "subscriptions": [
+            "linux",
+            "proxy",
+            "entity:dev-sensu-server-198-15-120.dc.ifood.com.br"
+        ],
+        "last_seen": 1614831950,
+        "deregister": true,
+        "deregistration": {
+            "handler": "deregistration"
+        },
+        "metadata": {
+            "name": "dev-teste-sensu-go-client-198-5-202.dc.ifood.com.br",
+            "namespace": "development",
+            "labels": {
+                "aws-instance-id": "i-008f729a0e9b3f90c",
+                "proxy_type": "collect",
+                "sensu.io/managed_by": "sensuctl"
+            },
+            "annotations": {
+                "arch": "amd64",
+                "os": "linux",
+                "sensu.io/plugins/sensu-ec2-handler/config/aws-instance-id": "i-008f729a0e9b3f90c",
+                "sensu.io/plugins/sensu-ec2-handler/config/aws-region": "sa-east-1"
+            }
+        },
+        "sensu_agent_version": "6.1.4"
+    },
+    "id": "adce6455-c426-4c8c-bcca-280a48b67f06",
+    "metadata": {
+        "namespace": "development"
+    },
+    "timestamp": 1614832657
+}
