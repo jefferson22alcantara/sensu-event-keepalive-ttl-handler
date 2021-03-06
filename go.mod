@@ -1,4 +1,4 @@
-module sensu-event-keepalive-ttl-handler
+module github.com/jefferson22alcantara/sensu-event-keepalive-ttl-handler
 
 go 1.14
 
