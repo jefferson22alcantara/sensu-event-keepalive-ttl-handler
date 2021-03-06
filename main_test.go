@@ -1,6 +1,7 @@
 package main
 
 import (
+	"context"
 	"encoding/json"
 	"fmt"
 	"net/http"
@@ -8,6 +9,7 @@ import (
 	"regexp"
 	"testing"
 
+	"github.com/sensu-community/sensu-plugin-sdk/httpclient"
 	corev2 "github.com/sensu/sensu-go/api/core/v2"
 	"github.com/sensu/sensu-go/types"
 )
@@ -85,4 +87,29 @@ func Testparameter(t *testing.T) bool {
 	}
 
 	return true
+}
+
+// Testeventalreadexist  teste
+func Testeventalreadexist(event *types.Event) bool {
+
+	config := httpclient.CoreClientConfig{
+		URL:    server.URL,
+		APIKey: "use transport layer security",
+		CACert: server.Certificate(),
+	}
+	cl := httpclient.NewCoreClient(config)
+	req := httpclient.NewEventRequest(event.Check.Namespace, event.Entity.Name, event.Check.Name)
+	ev := new(corev2.Event)
+	resp, err := cl.GetResource(context.Background(), req, ev)
+	if err != nil {
+		fmt.Println("Check Event not Found ", err)
+	}
+	var result bool
+	switch {
+	case resp.StatusCode == 404:
+		result = true
+	case resp.StatusCode == 200:
+		result = false
+	}
+	return result
 }
