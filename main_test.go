@@ -57,8 +57,7 @@ func Testparameter(t *testing.T) bool {
 		XXX_unrecognized:     []byte{},
 		XXX_sizecache:        0,
 	}
-	var MaxOccurrence int64
-	MaxOccurrence = 60
+	plugin.MAXOCCURENCE = 60
 
 	re, err := regexp.Compile(`\w+\s\w+\s\w+\s\w+\s\d+\s\w+\s\w+`)
 	if err != nil {
@@ -79,10 +78,10 @@ func Testparameter(t *testing.T) bool {
 		fmt.Println("Event Check Status [FAIL], Event not Match with Check Status 1 [nothing to do]", event.Check.Status)
 		return false
 	}
-	if event.Check.Occurrences > MaxOccurrence {
+	if event.Check.Occurrences > plugin.MAXOCCURENCE {
 		fmt.Println("Event Check Ocurrences [PASS]", event.Check.Occurrences)
 	} else {
-		fmt.Printf("Event Check Ocurrences [FAIL] event.Occurrences:%v is less Than MaxOccurrence Configured:%v [nothing to do]", event.Check.Occurrences, MaxOccurrence)
+		fmt.Printf("Event Check Ocurrences [FAIL] event.Occurrences:%v is less Than MaxOccurrence Configured:%v [nothing to do]", event.Check.Occurrences, plugin.MAXOCCURENCE)
 		return false
 	}
 

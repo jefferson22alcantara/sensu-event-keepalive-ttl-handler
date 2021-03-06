@@ -14,9 +14,9 @@ import (
 // Config represents the handler plugin config.
 type Config struct {
 	sensu.PluginConfig
-	APIKey        string
-	APIURL        string
-	MaxOccurrence int
+	APIKey       string
+	APIURL       string
+	MAXOCCURENCE int64
 }
 
 var (
@@ -52,32 +52,28 @@ var (
 			Env:       "SENSU_MAX_OCCURRENCE",
 			Argument:  "max_occurrence",
 			Shorthand: "m",
-			Default:   0,
+			Default:   int64(0),
 			Usage:     "The Max event Occurence after ttl to remove event   , use default from SENSU_MAX_OCCURRENCE env var",
-			Value:     &plugin.MaxOccurrence,
+			Value:     &plugin.MAXOCCURENCE,
 		},
 	}
 )
 
 func main() {
-	handler := sensu.NewGoHandler(&plugin.PluginConfig, options, checkArgs, executeHandler)
+	handler := sensu.NewGoHandler(&plugin.PluginConfig, options, checkArgs, ExecuteHandler)
 	handler.Execute()
 }
 
+//checkArgs check args
 func checkArgs(_ *types.Event) error {
-	if len(plugin.APIKey) == 0 {
-		return fmt.Errorf("apikey sensu  is empty")
-	}
-	if len(plugin.APIURL) == 0 {
-		return fmt.Errorf("url sensu  is empty")
-	}
-	return nil
-	if plugin.MaxOccurrence == 0 {
-		return fmt.Errorf("max occurrence sensu  is 0")
+	if len(plugin.APIKey) == 0 || len(plugin.APIURL) == 0 || plugin.MAXOCCURENCE == 0 {
+		return fmt.Errorf("apikey or sensu_url sensu  is empty")
 	}
 	return nil
 }
-func executeHandler(event *types.Event) error {
+
+//ExecuteHandler run eventhing
+func ExecuteHandler(event *types.Event) error {
 
 	res, err := CheckAnnotations(event)
 	if err != nil {
@@ -108,7 +104,7 @@ func executeHandler(event *types.Event) error {
 	return nil
 }
 
-// CheckEventAlreadexist  teste
+// CheckEventAlreadexist  Check if event alread exist
 func CheckEventAlreadexist(event *types.Event) bool {
 
 	config := httpclient.CoreClientConfig{
@@ -132,7 +128,7 @@ func CheckEventAlreadexist(event *types.Event) bool {
 	return result
 }
 
-// ClientDeleteResourceEvent  teste
+// ClientDeleteResourceEvent  Remove Event from entity
 func ClientDeleteResourceEvent(event *types.Event) bool {
 	config := httpclient.CoreClientConfig{
 		URL:    plugin.APIURL,
@@ -166,7 +162,7 @@ func ClientDeleteResourceEvent(event *types.Event) bool {
 	return false
 }
 
-// CheckAnnotations teste
+// CheckAnnotations Check event annotations
 func CheckAnnotations(event *types.Event) (bool, error) {
 
 	if event.Check.Annotations != nil {
@@ -186,8 +182,6 @@ func CheckAnnotations(event *types.Event) (bool, error) {
 
 //CheckEventParameter Check event
 func CheckEventParameter(event *types.Event) bool {
-	var MaxOccurrence int64
-	MaxOccurrence = int64(plugin.MaxOccurrence)
 
 	re, err := regexp.Compile(`\w+\s\w+\s\w+\s\w+\s\d+\s\w+\s\w+`)
 	if err != nil {
@@ -208,10 +202,10 @@ func CheckEventParameter(event *types.Event) bool {
 		fmt.Println("Event Check Status [FAIL], Event not Match with Check Status 1 [nothing to do]", event.Check.Status)
 		return false
 	}
-	if event.Check.Occurrences > MaxOccurrence {
+	if event.Check.Occurrences > plugin.MAXOCCURENCE {
 		fmt.Println("Event Check Ocurrences [PASS]", event.Check.Occurrences)
 	} else {
-		fmt.Printf("Event Check Ocurrences [FAIL] event.Occurrences:%v is less Than MaxOccurrence Configured:%v [nothing to do]", event.Check.Occurrences, MaxOccurrence)
+		fmt.Printf("Event Check Ocurrences [FAIL] event.Occurrences:%v is less Than MAXOCCURENCE Configured:%v [nothing to do]", event.Check.Occurrences, plugin.MAXOCCURENCE)
 		return false
 	}
 
