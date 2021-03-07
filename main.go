@@ -80,25 +80,26 @@ func ExecuteHandler(event *types.Event) error {
 		fmt.Println("Check Annotations error ", err)
 	}
 	if res {
-		for {
-			fmt.Println("Event as correct Annotations")
-			fmt.Println("Check Name :", event.Check.Name)
-			fmt.Println("Namespace: ", event.Entity.Namespace)
-			fmt.Println("Entity: ", event.Entity.Name)
-			dl := ClientDeleteResourceEvent(event)
-			if dl {
-				fmt.Println("Removed Sucess")
+		if CheckEventParameter(event) {
+			for {
+				fmt.Println("Event as correct Annotations")
+				fmt.Println("Check Name :", event.Check.Name)
+				fmt.Println("Namespace: ", event.Entity.Namespace)
+				fmt.Println("Entity: ", event.Entity.Name)
+				dl := ClientDeleteResourceEvent(event)
+				if dl {
+					fmt.Println("Removed Sucess")
 
-			} else {
-				fmt.Println("Fail to Remove Event by ttl")
+				} else {
+					fmt.Println("Fail to Remove Event by ttl")
 
+				}
+				if CheckEventAlreadexist(event) {
+					break
+				}
 			}
-			if CheckEventAlreadexist(event) {
-				break
-			}
+			// return nil
 		}
-		// return nil
-
 	}
 
 	return nil
