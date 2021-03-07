@@ -3,8 +3,7 @@
 [![Sensu Bonsai Asset](https://img.shields.io/badge/Bonsai-Download%20Me-brightgreen.svg?colorB=89C967&logo=sensu)](https://bonsai.sensu.io/assets/jefferson22alcantara/sensu-event-keepalive-ttl-handler)
 
 The Sensu Go Hangouts Chat Handler is a [Sensu Event Handler][2] which manages
-Sensu Events  Generede By ad hoc Checks That Still Alerting after TTL for alerting .The purposes With this handler is remove That Events after number of occurrence trigged ,
-[Sensu][1] 
+Sensu Events  Generede by ad hoc Checks that still alerting after TTL expired as message log  **`"level":"warning","msg":"check TTL expired"`** and **`"output": "Last check execution was xX seconds ago"`** .The purposes of handler is [Sensu][1] remove that events after number of occurrences trigged.
 
 
 ## Installation
