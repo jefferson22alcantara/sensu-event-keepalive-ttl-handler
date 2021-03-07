@@ -1,15 +1,15 @@
 # Sensu Go Handler Event KeepAlive By TTL 
 ![Go Test](https://github.com/jefferson22alcantara/sensu-event-keepalive-ttl-handler/workflows/Go%20Test/badge.svg)
-[![Sensu Bonsai Asset](https://img.shields.io/badge/Bonsai-Download%20Me-brightgreen.svg?colorB=89C967&logo=sensu)](https://bonsai.sensu.io/assets/jefferson22alcantara/sensu-hangouts-chat-handler)
+[![Sensu Bonsai Asset](https://img.shields.io/badge/Bonsai-Download%20Me-brightgreen.svg?colorB=89C967&logo=sensu)](https://bonsai.sensu.io/assets/jefferson22alcantara/sensu-event-keepalive-ttl-handler)
 
-The Sensu Go Hangouts Chat Handler is a [Sensu Event Handler][3] which manages
+The Sensu Go Hangouts Chat Handler is a [Sensu Event Handler][2] which manages
 Sensu Events  Generede By ad hoc Checks That Still Alerting after TTL for alerting .The purposes With this handler is remove That Events after number of occurrence trigged ,
 [Sensu][1] 
 
 
 ## Installation
 
-Download the latest version of the sensu-event-keepalive-ttl-handler from [releases][4],
+Download the latest version of the sensu-event-keepalive-ttl-handler from [releases][3],
 or create an executable script from this source.
 
 From the local path of the sensu-event-keepalive-ttl-handler repository:
@@ -105,7 +105,7 @@ type: CheckConfig
 api_version: core/v2
 metadata:
   annotations:
-    sensu.io/plugins/sensu-event-keepalive-ttl-handler/conf/enable": "true""
+    sensu.io/plugins/sensu-event-keepalive-ttl-handler/conf/enable: "true"
 [...]
 ```
 
@@ -115,7 +115,7 @@ metadata:
 The easiest way to get this handler added to your Sensu environment, is to add it as an asset from Bonsai:
 
 ```sh
-sensuctl asset add jefferson22alcantara/sesensu-event-keepalive-ttl-handler 
+sensuctl asset add jefferson22alcantara/sensu-event-keepalive-ttl-handler
 ```
 
 See `sensuctl asset --help` for details on how to specify version.
@@ -123,6 +123,7 @@ See `sensuctl asset --help` for details on how to specify version.
 ## Contributing
 
 See https://github.com/sensu/sensu-go/blob/master/CONTRIBUTING.md
+
 [1]: https://github.com/sensu/sensu-go
-[3]: https://docs.sensu.io/sensu-go/5.0/reference/handlers/#how-do-sensu-handlers-work
-[4]: https://github.com/jefferson22alcantara/sensu-event-keepalive-ttl-handler/releases
+[2]: https://docs.sensu.io/sensu-go/5.0/reference/handlers/#how-do-sensu-handlers-work
+[3]: https://github.com/jefferson22alcantara/sensu-event-keepalive-ttl-handler/releases
