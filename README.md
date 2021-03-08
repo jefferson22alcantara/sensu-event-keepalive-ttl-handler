@@ -2,7 +2,7 @@
 ![Go Test](https://github.com/jefferson22alcantara/sensu-event-keepalive-ttl-handler/workflows/Go%20Test/badge.svg)
 [![Sensu Bonsai Asset](https://img.shields.io/badge/Bonsai-Download%20Me-brightgreen.svg?colorB=89C967&logo=sensu)](https://bonsai.sensu.io/assets/jefferson22alcantara/sensu-event-keepalive-ttl-handler)
 
-The Sensu Go Hangouts Chat Handler is a [Sensu Event Handler][2] which manages
+The Sensu Go Handler Event KeepAlive By TTL is a [Sensu Event Handler][2] which manages
 Sensu Events  Generede by ad hoc Checks that still alerting after TTL expired as message log  **`"level":"warning","msg":"check TTL expired"`** and **`"output": "Last check execution was xX seconds ago"`** .The purposes of handler is [Sensu][1] remove that events after number of occurrences trigged.
 
 
